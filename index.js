@@ -1,18 +1,17 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/database');
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const User = require('./User');
-const MenuItem = require('./MenuItem');
-const Order = require('./Order');
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-User.init(sequelize);
-MenuItem.init(sequelize);
-Order.init(sequelize);
-
-Order.belongsTo(User, { as: 'customer' });
-Order.belongsToMany(MenuItem, { through: 'OrderItems' });
-MenuItem.belongsToMany(Order, { through: 'OrderItems' });
-
-sequelize.sync();
-
-module.exports = { User, MenuItem, Order };
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
